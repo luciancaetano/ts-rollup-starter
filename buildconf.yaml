@@ -1,9 +1,0 @@
-name: My BuildConf
-jobs:
-  build_project:
-    steps:
-      - name: lint
-        run: |
-          yarn lint
-      - name: build
-        run: yarn build
