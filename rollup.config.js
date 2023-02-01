@@ -1,13 +1,13 @@
-import typescript from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
-import json from 'rollup-plugin-json';
-import tsc from 'typescript';
-import run from '@rollup/plugin-run';
-import pkg from './package.json';
+const typescript = require('@rollup/plugin-typescript');
+const { terser } = require('rollup-plugin-terser');
+const json = require('rollup-plugin-json');
+const tsc = require('typescript');
+const run = require('@rollup/plugin-run');
+const pkg = require('./package.json');
 
 const dev = process.env.ROLLUP_WATCH === 'true';
 
-export default {
+module.exports = {
     input: 'src/index.ts', // our source file
     output: {
         format: 'cjs',
@@ -23,11 +23,6 @@ export default {
     plugins: [
         typescript({
             typescript: tsc,
-            tsconfigOverride: {
-                compilerOptions: {
-                    module: 'ESNext',
-                },
-            },
         }),
         json(),
         terser(), // minifies generated bundles
